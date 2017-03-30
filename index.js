@@ -58,6 +58,21 @@ app.post('/peal/api/sso/users/activate', function (req, res) {
 	});
 });
 
+app.get('/peal/api/sso/users/GENERAL/updateUser', function (req, res) {
+	fs.readFile('./updateUsers.json', 'utf8', function (err,data) {
+  		if (err) {
+    		return console.log(err);
+  		}
+  		transporter.sendMail(mailOptions, (error, info) => {
+    		if (error) {
+        		return console.log(error);
+    		}
+    		console.log('Message %s sent: %s', info.messageId, info.response);
+		});
+  		res.status(200).send(data)	
+	});
+});
+
 app.post('/', function (req, res) {
   res.send('Hello World!');
 });

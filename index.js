@@ -58,7 +58,7 @@ app.post('/peal/api/sso/users/activate', function (req, res) {
 	});
 });
 
-app.get('/peal/api/sso/users/GENERAL/updateUser', function (req, res) {
+app.post('/peal/api/sso/users/GENERAL/updateUser', function (req, res) {
 	fs.readFile('./updateUsers.json', 'utf8', function (err,data) {
   		if (err) {
     		return console.log(err);

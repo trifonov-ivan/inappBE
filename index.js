@@ -49,7 +49,11 @@ app.get('/url', function(req, res) {
 });
 
 app.get('/peal/api/sso/users', function (req, res) {
-	fs.readFile('./pealssousers.json', 'utf8', function (err,data) {
+	var filename = './pealssousers.json';
+	if ( req.param('custId') == 1265217804 ) {
+		filename = './usersToRestore.json';
+	}
+	fs.readFile(filename, 'utf8', function (err,data) {
   		if (err) {
     		return console.log(err);
   		}

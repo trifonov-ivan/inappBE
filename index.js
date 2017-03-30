@@ -58,18 +58,42 @@ app.post('/peal/api/sso/users/activate', function (req, res) {
 	});
 });
 
-app.post('/peal/api/sso/users/GENERAL/updateUser', function (req, res) {
-	fs.readFile('./updateUsers.json', 'utf8', function (err,data) {
+app.post('/peal/api/sso/users/register', function (req, res) {
+	fs.readFile('./users2.json', 'utf8', function (err,registerData) {
   		if (err) {
     		return console.log(err);
   		}
-  		transporter.sendMail(mailOptions, (error, info) => {
-    		if (error) {
-        		return console.log(error);
-    		}
-    		console.log('Message %s sent: %s', info.messageId, info.response);
-		});
-  		res.status(200).send(data)	
+  		res.status(200).send(registerData);
+	});
+});
+
+app.post('/peal/api/sso/users/GENERAL/updateUser', function (req, res) {
+	fs.readFile('./updateusers.json', 'utf8', function (err,updateData) {
+  		if (err) {
+    		return console.log(err);
+  		}
+
+		fs.readFile('./forgot.html', 'utf8', function (err,data) {
+  			if (err) {
+    			return console.log(err);
+  			}
+
+	  		var mailOptions = {
+			    from: 'Unitymedia <service@email.unitymedia.de>', // sender address
+	    		to: 'iaf.epam@gmail.com', // list of receivers
+	    		subject: 'Bestätigung Ihrer E-Mail-Adresse', // Subject line
+	    		html: data
+			};
+
+
+	  		transporter.sendMail(mailOptions, (error, info) => {
+	    		if (error) {
+	        		return console.log(error);
+	    		}
+	    		console.log('Message %s sent: %s', info.messageId, info.response);
+			});
+	  		res.status(200).send(updateData)	
+	  	})l
 	});
 });
 

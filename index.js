@@ -18,7 +18,7 @@ app.get('/peal/api/sso/users', function (req, res) {
 	});
 });
 
-app.get('/peal/api/sso/users/resendverificationlink', function (req, res) {
+app.post('/peal/api/sso/users/resendverificationlink', function (req, res) {
 	fs.readFile('./resendverificationlink.json', 'utf8', function (err,data) {
   		if (err) {
     		return console.log(err);
@@ -27,7 +27,7 @@ app.get('/peal/api/sso/users/resendverificationlink', function (req, res) {
 	});
 });
 
-app.get('/peal/api/sso/users/activate', function (req, res) {
+app.post('/peal/api/sso/users/activate', function (req, res) {
 	fs.readFile('./activate.json', 'utf8', function (err,data) {
   		if (err) {
     		return console.log(err);

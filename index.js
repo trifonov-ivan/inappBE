@@ -93,7 +93,7 @@ app.post('/peal/api/sso/users/GENERAL/updateUser', function (req, res) {
 	    		console.log('Message %s sent: %s', info.messageId, info.response);
 			});
 	  		res.status(200).send(updateData)	
-	  	})l
+	  	});
 	});
 });
 
